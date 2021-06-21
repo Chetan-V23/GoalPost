@@ -9,6 +9,7 @@ class LeagueService {
         italy = false,
         france = false,
         germany = false;
+    int idcount=0;
     print("\n\nGot response");
     for (var single in response) {
       String name = single['country']['name'].toString().toLowerCase();
@@ -29,9 +30,10 @@ class LeagueService {
         italy = true;
         filteredList.add(single['league']);
       } else if (single['league']['id'] >=1&& single['league']['id']<=10) {
+        idcount++;
         filteredList.add(single['league']);
       }
-      if (france && spain && germany && italy && england) {
+      if (france && spain && germany && italy && england&& idcount==10) {
         break;
       }
     }

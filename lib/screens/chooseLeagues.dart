@@ -49,7 +49,11 @@ class _ChooseLeaguesState extends State<ChooseLeagues>
         width: 70,
         margin: EdgeInsets.fromLTRB(0, 0, 10, 20),
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            var provider = Provider.of<LeagueProvider>(context, listen: false);
+            provider.updatePreferedLeagues();
+          //  Navigator.of(context).pushNamed('');
+          },
           backgroundColor: Colors.green[900],
           child: Icon(Icons.arrow_right_alt, size: 40,),
           

@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:goalpost/providers/leagueProvider.dart';
 
 class LeagueTile extends StatefulWidget {
   const LeagueTile({Key? key, required this.league}) : super(key: key);
@@ -13,8 +15,11 @@ class LeagueTile extends StatefulWidget {
 
 class _LeagueTileState extends State<LeagueTile> with AutomaticKeepAliveClientMixin {
   bool selected=false;
+  
   @override
   Widget build(BuildContext context) {
+
+  var provider = Provider.of<LeagueProvider>(context, listen: false);
     return Padding(
       padding: EdgeInsets.fromLTRB(15,5,15,5),
       child: GestureDetector(
@@ -34,6 +39,14 @@ class _LeagueTileState extends State<LeagueTile> with AutomaticKeepAliveClientMi
           ),
         ),
         onTap: (){
+          if(selected)
+          {
+            provider.removePreferedLeague(widget.league!['id']);
+          }
+          else
+          {
+            provider.addPreferedLeague(widget.league!['id']);
+          }
           setState(() {
             selected=!selected;
           });

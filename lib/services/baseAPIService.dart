@@ -2,11 +2,12 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:goalpost/modals/sacffoldObjects.dart';
 import 'dart:convert';
+import 'package:goalpost/utilities/apiKey.dart';
 
 class BaseAPIHelper {
   static final String _baseURL = "https://api-football-v1.p.rapidapi.com";
   static final String _apiKey =
-      "774708810bmsh92657b3a937884fp1ce572jsn1edddd47e75c";
+      footballApiKey;
   static Future<dynamic> get(String url) async {
     http.Response? response;
     var jsonResponse;

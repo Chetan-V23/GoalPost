@@ -33,7 +33,7 @@ class LeagueService {
         idcount++;
         filteredList.add(single['league']);
       }
-      if (france && spain && germany && italy && england&& idcount==10) {
+      if (france && spain && germany && italy && england && idcount==10) {
         break;
       }
     }

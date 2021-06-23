@@ -8,19 +8,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Authentication:
 
-class Authentication {
+abstract class Authentication {
+
   static Future<bool?> createUserWithEmail(
       {required BuildContext context,
       required String email,
       required String password}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
-    //User? user;
+    CollectionReference userCollection= FirebaseFirestore.instance.collection('users');
 
     try {
       print('TRYNG TO CREATE');
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       print('CREATED USER');
+      userCollection.doc(auth.currentUser!.uid).set({
+            'email': auth.currentUser!.email, 
+            'id':auth.currentUser!.uid,
+      }).then((value) => print("User Added")).catchError((error) => print("Failed to add user: $error"));
       Navigator.of(context).pushNamed('/');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -66,10 +71,15 @@ class Authentication {
 
 //UserDataBase:
 
-class Userdata {
+abstract class UserdataService {
 
   //Collection reference:
-  FirebaseAuth auth=FirebaseAuth.instance;
-  final CollectionReference userCollection= FirebaseFirestore.instance.collection('users');
-  
+  static FirebaseAuth auth=FirebaseAuth.instance;
+  static final DocumentReference userDocument= FirebaseFirestore.instance.collection('users').doc(auth.currentUser!.uid);
+
+  static Future updateUserLeagues(List<int> listOfLeagues) async {
+    userDocument.set({
+      'leagues':listOfLeagues,
+    }, SetOptions(merge:true));
+  }
 }

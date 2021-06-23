@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:goalpost/classes/userclass.dart';
 import 'package:goalpost/services/leagueServices.dart';
+import 'package:goalpost/services/userServices.dart';
 
 class LeagueProvider with ChangeNotifier{
 
@@ -28,8 +30,9 @@ class LeagueProvider with ChangeNotifier{
   }
 
   Future<void> updatePreferedLeagues()async {
-    
 
+    await UserdataService.updateUserLeagues( _preferedLeagueId);
+    print("UPDATED");
   }
 
   void getPreferedLeagues(){

@@ -6,7 +6,7 @@ class SomethingWentWrong extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(body: Container(child: Text('Whoops'),),),
+      home: Scaffold(body: Container(child: Text('oops'),),),
     );
   }
 }

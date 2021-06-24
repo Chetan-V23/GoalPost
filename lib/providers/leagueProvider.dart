@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:goalpost/classes/userclass.dart';
 import 'package:goalpost/services/leagueServices.dart';
 import 'package:goalpost/services/userServices.dart';
 
@@ -7,8 +6,8 @@ class LeagueProvider with ChangeNotifier{
 
   List<dynamic> _leagues=[];
   List<dynamic> get leagues => _leagues;
-  List<int> _preferedLeagueId=[];
-  List<int> get preferedLeagueId=> _preferedLeagueId;
+  List<dynamic> _preferedLeagueId=[];
+  List<dynamic> get preferedLeagueId=> _preferedLeagueId;
 
   Future<void> getLeagues()async {
     _leagues= await LeagueService.getLeagues();
@@ -21,22 +20,27 @@ class LeagueProvider with ChangeNotifier{
     {
       preferedLeagueId.add(id);
     }
+    notifyListeners();
   }
   void removePreferedLeague(int id){
     if(_preferedLeagueId.contains(id))
     {
       preferedLeagueId.remove(id);
     }
+    notifyListeners();
   }
 
   Future<void> updatePreferedLeagues()async {
 
     await UserdataService.updateUserLeagues( _preferedLeagueId);
     print("UPDATED");
+    notifyListeners();
   }
 
-  void getPreferedLeagues(){
-
+  Future getPreferedLeagues()async{
+    print("Prefered Leagues function called");
+    _preferedLeagueId= await UserdataService.getUserLeagues();
+    print("Prefered Leagues have been received");
+    notifyListeners();
   }
-
 }

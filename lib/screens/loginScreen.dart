@@ -119,10 +119,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: MenuButtons(
                       text: 'Login',
                       onPressed: () async {
-                        if(_formKey.currentState!.validate()){
+                        if (_formKey.currentState!.validate()) {
                           print('it works');
-                          bool? result=await Authentication.signInWithEmail(context: context, email: this.email!, password: this.password!);
-                          
+                          await Authentication.signInWithEmail(
+                              context: context,
+                              email: this.email!,
+                              password: this.password!);
                         }
                       },
                     ),

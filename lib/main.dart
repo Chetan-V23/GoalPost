@@ -8,6 +8,7 @@ import 'screens/loadingScreen.dart';
 import 'screens/signupScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'providers/leagueProvider.dart';
+import 'screens/showMatches.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -100,7 +101,8 @@ class GoalPost extends StatelessWidget {
           '/login': (context) => LoginScreen(),
           '/signUp': (context) => SignUp(),
           '/chooseLeagues': (context)=> ChooseLeagues(),
-          //'/showMatches':(context)=> ShowMatches(),
+          '/showMatches':(context)=> ShowMatches(),
+
         });
   }
 }

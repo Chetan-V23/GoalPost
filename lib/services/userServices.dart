@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:goalpost/modals/sacffoldObjects.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ abstract class Authentication {
 
     try {
       print('TRYNG TO CREATE');
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       print('CREATED USER');
       userCollection.doc(auth.currentUser!.uid).set({
@@ -77,9 +76,19 @@ abstract class UserdataService {
   static FirebaseAuth auth=FirebaseAuth.instance;
   static final DocumentReference userDocument= FirebaseFirestore.instance.collection('users').doc(auth.currentUser!.uid);
 
-  static Future updateUserLeagues(List<int> listOfLeagues) async {
+  static Future updateUserLeagues(List<dynamic> listOfLeagues) async {
     userDocument.set({
       'leagues':listOfLeagues,
     }, SetOptions(merge:true));
+  }
+  static Future<List<dynamic>> getUserLeagues() async{
+   // List<int> listOfLeagues=[];
+    DocumentSnapshot documentSnapshot= await userDocument.get();
+    print("Got document");
+    List<dynamic> dynamiclistOfLeagues=documentSnapshot.get('leagues');
+    print('List of Leagues'+ dynamiclistOfLeagues.toString());
+    // dynamiclistOfLeagues.forEach((element) { listOfLeagues.add(int.parse(element));});
+    // print("List Of leagues: "+ listOfLeagues.toString());
+    return dynamiclistOfLeagues;
   }
 }

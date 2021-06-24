@@ -11,7 +11,6 @@ class BaseAPIHelper {
   static Future<dynamic> get(String url) async {
     http.Response? response;
     var jsonResponse;
-   // var request = Uri.parse(_baseURL+url);
     try {
       response = await http.get(Uri.parse(_baseURL+url), headers: {
         "x-rapidapi-key": _apiKey,
@@ -22,7 +21,7 @@ class BaseAPIHelper {
     } on SocketException {
       print('No Connection');
     }
-    showError('Requests remaining for the day: '+response!.headers['x-ratelimit-requests-remaining']!);
+    showWarning('Requests remaining for the day: '+response!.headers['x-ratelimit-requests-remaining']!);
     return jsonResponse['response'];
   }
 

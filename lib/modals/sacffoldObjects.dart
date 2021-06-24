@@ -19,3 +19,22 @@ void showError(String message) {
         textColor: Colors.white,
         fontSize: 16.0);
   }
+
+void showSuccess(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+void showWarning(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.yellow[600],
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }

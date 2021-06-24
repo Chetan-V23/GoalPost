@@ -15,7 +15,7 @@ class LeagueService {
       String name = single['country']['name'].toString().toLowerCase();
       if (spain == false && name == 'spain') {
         spain = true;
-        ;
+        
         filteredList.add(single['league']);
       } else if (england == false && name == 'england') {
         england = true;

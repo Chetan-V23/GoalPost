@@ -17,24 +17,34 @@ class ChooseLeagues extends StatefulWidget {
 class _ChooseLeaguesState extends State<ChooseLeagues>
     with SingleTickerProviderStateMixin {
   List<dynamic>? leagueList;
+  bool preferedLeaguesPresent = false;
+  bool ready=false;
   void initState() {
-    // TODO: implement initState
-    getLeagues();
+
+    getInitialData();
     super.initState();
   }
 
-  Future<void> getLeagues() async {
-    //Provider.of(context)<LeagueProvider>()
+  Future<void> getInitialData() async {
     var provider = Provider.of<LeagueProvider>(context, listen: false);
+    if (provider.preferedLeagueId.isNotEmpty)
+      preferedLeaguesPresent = true;
+    else {
+      await provider.getPreferedLeagues();
+      print("Prefered Leagues Updated in Choose leagues");
+      preferedLeaguesPresent = true;
+    }
     if (provider.leagues.isNotEmpty)
-      setState(() {
-        leagueList = provider.leagues;
-      });
+      leagueList = provider.leagues;
     else {
       await Provider.of<LeagueProvider>(context, listen: false).getLeagues();
       print("Leagues Updated in Choose leagues");
+      leagueList = provider.leagues;
+    }
+    if(preferedLeaguesPresent==true && provider.leagues.isNotEmpty)
+    {
       setState(() {
-        leagueList = provider.leagues;
+        ready=true;
       });
     }
   }
@@ -52,11 +62,13 @@ class _ChooseLeaguesState extends State<ChooseLeagues>
           onPressed: () {
             var provider = Provider.of<LeagueProvider>(context, listen: false);
             provider.updatePreferedLeagues();
-          //  Navigator.of(context).pushNamed('');
+            Navigator.of(context).pushNamed('/chooseTeams');
           },
           backgroundColor: Colors.green[900],
-          child: Icon(Icons.arrow_right_alt, size: 40,),
-          
+          child: Icon(
+            Icons.arrow_right_alt,
+            size: 40,
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

@@ -3,7 +3,6 @@ import 'package:goalpost/modals/buttons.dart';
 import 'package:goalpost/modals/sacffoldObjects.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-import 'package:goalpost/services/leagueServices.dart';
 
 
 class StartScreen extends StatefulWidget {

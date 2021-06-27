@@ -108,8 +108,8 @@ class TeamIcon extends StatelessWidget {
         alignment: leftOrRight ? Alignment.centerLeft : Alignment.centerRight,
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment:
-              leftOrRight ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+              //leftOrRight ? CrossAxisAlignment.start : CrossAxisAlignment.end,
           children: [
             Image.network(
               imgSrc,
@@ -119,11 +119,12 @@ class TeamIcon extends StatelessWidget {
             ),
             Container(
               height: 20,
-              width: 60,
+              width: 70,
               child: Text(
                 name,
                 style: TextStyle(color: Colors.white, fontSize: 15),
-                textAlign: leftOrRight ? TextAlign.start : TextAlign.end,
+               // textAlign: leftOrRight ? TextAlign.start : TextAlign.end,
+                textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ),

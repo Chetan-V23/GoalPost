@@ -49,7 +49,7 @@ class _ShowMatchesState extends State<ShowMatches>
       drawer: drawer,
       body: SafeArea(
         child: ready == true
-            ? Column(
+            ? provider.matchesList!.isNotEmpty? Column(
                 children: [
                   // Text(
                   //   provider.matchesList.toString(),
@@ -65,6 +65,12 @@ class _ShowMatchesState extends State<ShowMatches>
                     ),
                   )
                 ],
+              ) :
+              Container(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  'No Matches to show'
+                ),
               )
             : SpinKitWave(
                 color: Colors.white,

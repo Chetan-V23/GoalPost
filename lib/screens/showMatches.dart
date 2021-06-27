@@ -7,7 +7,9 @@ import 'package:goalpost/providers/matchProvider.dart';
 import 'package:provider/provider.dart';
 
 class ShowMatches extends StatefulWidget {
-  const ShowMatches({Key? key}) : super(key: key);
+
+  const ShowMatches({Key? key,required this.leagueIds}) : super(key: key);
+  final List<dynamic> leagueIds;
 
   @override
   _ShowMatchesState createState() => _ShowMatchesState();
@@ -25,11 +27,12 @@ class _ShowMatchesState extends State<ShowMatches>
   }
 
   void getMatches() async {
+    
     print("in get Matches");
     var provider = Provider.of<MatchProvider>(context, listen: false);
     if (provider.matchesList!.isEmpty) {
       print("In if statement");
-      await provider.getMatches();
+      await provider.getMatches(widget.leagueIds);
       setState(() {
         ready = true;
       });
@@ -51,10 +54,6 @@ class _ShowMatchesState extends State<ShowMatches>
         child: ready == true
             ? provider.matchesList!.isNotEmpty? Column(
                 children: [
-                  // Text(
-                  //   provider.matchesList.toString(),
-                  //   style: TextStyle(color: Colors.white),
-                  // ),
                   Expanded(
                     child: ListView.builder(
                       addAutomaticKeepAlives: true,
@@ -80,5 +79,12 @@ class _ShowMatchesState extends State<ShowMatches>
               ),
       ),
     );
+  }
+  @override
+  void dispose() {
+    print("in get Dispose");
+    var provider = Provider.of<MatchProvider>(context, listen: false);
+    provider.matchesList!.clear();
+    super.dispose();
   }
 }

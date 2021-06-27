@@ -10,6 +10,9 @@ import 'screens/signupScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'providers/leagueProvider.dart';
 import 'screens/showMatches.dart';
+import 'screens/skippedChooseLeagues.dart';
+import 'package:goalpost/router.dart' as router;
+import 'routes/routeConstants.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -97,13 +100,16 @@ class GoalPost extends StatelessWidget {
 
         //routes:
 
-        initialRoute: '/',
-        routes: {
-          '/': (context) => StartScreen(),
-          '/login': (context) => LoginScreen(),
-          '/signUp': (context) => SignUp(),
-          '/chooseLeagues': (context) => ChooseLeagues(),
-          '/showMatches': (context) => ShowMatches(),
-        });
+        initialRoute: startScreenRoute,
+        // routes: {
+        //   '/': (context) => StartScreen(),
+        //   '/login': (context) => LoginScreen(),
+        //   '/signUp': (context) => SignUp(),
+        //   '/chooseLeagues': (context) => ChooseLeagues(),
+        //   '/showMatches': (context) => ShowMatches(),
+        //   '/skippedChooseLeagues':(context) => SkippedChooseLeagues()
+        // }
+        onGenerateRoute: router.generateRoute,
+        );
   }
 }

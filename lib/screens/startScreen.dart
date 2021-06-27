@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:goalpost/modals/buttons.dart';
 import 'package:goalpost/modals/sacffoldObjects.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:goalpost/routes/routeConstants.dart';
 
 
 
@@ -70,7 +71,7 @@ class _StartScreenState extends State<StartScreen> {
                     onPressed: ()  async {
                      // var message=await LeagueService.getLeagues();
                      print("Pressed skip");
-                      Navigator.of(context).popAndPushNamed('/showMatches');
+                      Navigator.of(context).popAndPushNamed(skippedChooseLeaguesRoute);
                       //print(message);                    
                     },
                   ),

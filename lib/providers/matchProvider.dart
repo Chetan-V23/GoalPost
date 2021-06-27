@@ -6,9 +6,9 @@ class MatchProvider with ChangeNotifier {
   List<dynamic>? _matchesList=[];
   List<dynamic>? get matchesList => _matchesList;
 
-  Future getMatches() async {
+  Future getMatches(List<dynamic> leagueIds) async {
     print("Getting Matches");
-    _matchesList = await MatchesService.getLeagueMatches(4);
+    _matchesList = await MatchesService.getLeagueMatches(leagueIds);
     print(matchesList.toString());
   }
 }

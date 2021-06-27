@@ -5,17 +5,21 @@ import 'dart:convert';
 import 'package:goalpost/utilities/apiKey.dart';
 
 class BaseAPIHelper {
-  static final String _baseURL = "https://api-football-v1.p.rapidapi.com";
+  static final String _baseURL = "api-football-v1.p.rapidapi.com";
   static final String _apiKey =
       footballApiKey;
-  static Future<dynamic> get(String url) async {
+  static Future<dynamic> get(String url, Map<String,dynamic>? queryParams) async {
     http.Response? response;
     var jsonResponse;
     try {
-      response = await http.get(Uri.parse(_baseURL+url), headers: {
+      print("Forming query");
+      var uri=Uri.https(_baseURL, url, queryParams); 
+      print("Sending query 2");
+      response = await http.get(uri, headers: {
         "x-rapidapi-key": _apiKey,
         "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
       });
+      print("Got Response 2");
       jsonResponse = getJsonFromResponse(response);
       
     } on SocketException {

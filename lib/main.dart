@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goalpost/providers/matchProvider.dart';
 import 'package:goalpost/screens/chooseLeagues.dart';
 import 'package:provider/provider.dart';
 import 'screens/startScreen.dart';
@@ -43,6 +44,7 @@ class _AppState extends State<App> {
           return MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (_) => LeagueProvider()),
+              ChangeNotifierProvider(create: (_) => MatchProvider()),
             ],
             child: GoalPost(),
           );
@@ -100,9 +102,8 @@ class GoalPost extends StatelessWidget {
           '/': (context) => StartScreen(),
           '/login': (context) => LoginScreen(),
           '/signUp': (context) => SignUp(),
-          '/chooseLeagues': (context)=> ChooseLeagues(),
-          '/showMatches':(context)=> ShowMatches(),
-
+          '/chooseLeagues': (context) => ChooseLeagues(),
+          '/showMatches': (context) => ShowMatches(),
         });
   }
 }

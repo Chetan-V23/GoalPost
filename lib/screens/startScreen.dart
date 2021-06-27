@@ -69,7 +69,8 @@ class _StartScreenState extends State<StartScreen> {
                     ),
                     onPressed: ()  async {
                      // var message=await LeagueService.getLeagues();
-                      Navigator.of(context).popAndPushNamed('/chooseLeagues');
+                     print("Pressed skip");
+                      Navigator.of(context).popAndPushNamed('/showMatches');
                       //print(message);                    
                     },
                   ),

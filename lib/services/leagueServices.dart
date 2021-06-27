@@ -3,7 +3,7 @@ import 'baseAPIService.dart';
 class LeagueService {
   static Future<List<dynamic>> getLeagues() async {
     List<dynamic> filteredList = [];
-    var response = await BaseAPIHelper.get('/v3/leagues');
+    var response = await BaseAPIHelper.get('/v3/leagues', null);
     bool spain = false,
         england = false,
         italy = false,
@@ -15,7 +15,6 @@ class LeagueService {
       String name = single['country']['name'].toString().toLowerCase();
       if (spain == false && name == 'spain') {
         spain = true;
-        
         filteredList.add(single['league']);
       } else if (england == false && name == 'england') {
         england = true;

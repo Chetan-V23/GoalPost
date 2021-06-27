@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:goalpost/modals/sacffoldObjects.dart';
-import 'package:goalpost/modals/tiles.dart';
+import 'package:goalpost/modals/leaguetile.dart';
 import 'package:provider/provider.dart';
 import 'package:goalpost/providers/leagueProvider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
